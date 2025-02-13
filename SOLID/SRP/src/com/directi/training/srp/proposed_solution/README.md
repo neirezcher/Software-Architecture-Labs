@@ -8,7 +8,7 @@ This solution demonstrates how to apply the **Single Responsibility Principle (S
 ## Package Structure
 
 The classes are organized into a package structure:
-
+```
 com
  └── directi
      └── training
@@ -19,7 +19,7 @@ com
                  ├── CarEvaluator.java
                  └── models
                      └── Car.java
-
+```
 ## Structure of the Classes
 
 ### 1. **Car.java**
