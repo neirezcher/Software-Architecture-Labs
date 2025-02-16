@@ -1,7 +1,7 @@
-package com.directi.training.srp.proposed_solution;
+package com.directi.training.srp.proposed_solution.Services;
 
 import java.util.List;
-import com.directi.training.srp.Proposed_Solution.models.Car; 
+import com.directi.training.srp.proposed_solution.Models.Car; 
 
 public class CarEvaluator {
     public Car getBestCar(List<Car> cars) {
