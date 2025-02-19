@@ -1,4 +1,4 @@
-package com.directi.training.srp.proposed_solution;
+package com.directi.training.srp.proposed_solution.Models;
 
 public class Car {
     private final String _id;

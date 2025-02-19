@@ -1,0 +1,53 @@
+@startuml Proposed_Solution
+class Car{
+    - _id : String
+    - _model : String 
+    - _brand : String 
+    + getCarName()
+}
+class CarDB{
+    -  _cardb : List<Cars>
+    - instance : CarDB
+    + getFromdb( String carID)
+    + {static} getInstance (List<Cars> carsDb)
+    + getALLCars ()
+
+}
+note left of CarDB::instance
+  Applied Singleton pattern for database
+  which should instanciate only once
+  in this case we should handle 
+  concurant access in times where conflict exists
+  (use of semaphores)
+end note
+class CarFormator{
+    + getCarNames ()
+}
+class CarEvaluator{
+    + getBestCar ()
+}
+class CarManager{
+    - carDB : CarDB
+    - carFormatter : CarFormatter 
+    - carEvaluator : CarEvaluator
+
+}
+note left of CarManager
+  CarManager is acting as a Facade by integrating 
+  CarDB, CarFormatter, and CarEvaluator.
+  it provides a simplified interface for managing cars.
+end note
+interface CarAPI{
+    + getCarById(String carId)
+    + getAllCarNames()
+    + getBestCar()
+}
+
+CarDB o-- Car
+CarFormator ..> Car
+CarEvaluator ..> Car
+CarManager --> CarDB
+CarManager --> CarFormator
+CarManager --> CarEvaluator
+CarAPI <|.. CarManager
+@enduml

@@ -1,0 +1,15 @@
+@startuml Initial_Solution
+class Car{
+    - _id : String
+    - _model : String 
+    - _brand : String 
+}
+class CarManager{
+    - _cardb : List<Cars> : 
+    + getFromdb( String carID)
+    + getCarNames ()
+    + getBestCar ()
+
+}
+CarManager o-- Car
+@enduml
