@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SOLID/DIP/DIP.iml" filepath="$PROJECT_DIR$/SOLID/DIP/DIP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SOLID/ISP/ISP.iml" filepath="$PROJECT_DIR$/SOLID/ISP/ISP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SOLID/LSP/LSP.iml" filepath="$PROJECT_DIR$/SOLID/LSP/LSP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SOLID/OCP/OCP.iml" filepath="$PROJECT_DIR$/SOLID/OCP/OCP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SOLID/SRP/SRP.iml" filepath="$PROJECT_DIR$/SOLID/SRP/SRP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Software-Architecture-Labs.iml" filepath="$PROJECT_DIR$/.idea/Software-Architecture-Labs.iml" />
+    </modules>
+  </component>
+</project>
