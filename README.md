@@ -107,7 +107,7 @@ La classe ResourceAllocator fonctionne maintenant avec l'interface IResourceType
 ![Après OCP](SOLID/OCP/src/com/directi/training/ocp/solution_exercice/UML_class.png)
 
 ## SRP: 
-### Solution Initial 
+### Solution Initiale
 ![Avant SRP](out/SOLID/SRP/src/com/directi/training/srp/exercise/InitialSolution/Initial_Solution.png)
 ### Solution proposée en appliquant SRP principe
 ![Après SRP](out/SOLID/SRP/src/com/directi/training/srp/proposed_solution/Proposed_Solution/Proposed_Solution.png)
