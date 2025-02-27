@@ -107,7 +107,121 @@ La classe ResourceAllocator fonctionne maintenant avec l'interface IResourceType
 ![Après OCP](SOLID/OCP/src/com/directi/training/ocp/solution_exercice/UML_class.png)
 
 ## SRP: 
-
+### Solution Initial 
 ![Avant SRP](out/SOLID/SRP/src/com/directi/training/srp/exercise/InitialSolution/Initial_Solution.png)
-
+### Solution proposée en appliquant SRP principe
 ![Après SRP](out/SOLID/SRP/src/com/directi/training/srp/proposed_solution/Proposed_Solution/Proposed_Solution.png)
+Cette solution démontre comment appliquer le **Principe de Responsabilité Unique (SRP)** à un système de gestion de voitures tout en incorporant le **Patron de Conception Facade**. Le système gère les données des voitures, formate les noms des voitures et évalue la meilleure voiture en fonction de son modèle. Le code a été refactorisé pour séparer les responsabilités en différentes classes. La classe `CarManager` agit comme une façade et implémente l'interface `CarManagerAPI`, simplifiant ainsi l'interaction avec les autres services, et la base de données des voitures est gérée via le **Patron Singleton**.
+
+## Structure du projet
+
+Les classes sont organisées dans une structure de paquets plus raffinée :
+```
+com
+ └── directi
+     └── training
+         └── srp
+             └── proposed_solution
+                 ├── api
+                 │    ├── CarManagerAPI.java
+                 │    └── implementation
+                 │        └── CarManager.java
+                 ├── database
+                 │    └── CarDB.java
+                 ├── models
+                 │    └── Car.java
+                 └── services
+                      ├── CarEvaluator.java
+                      └── CarFormatter.java
+
+```
+
+## Structure des classes
+
+### 1. **Car.java (DTO)**
+
+La classe `Car` est située dans le paquet `models` et représente une voiture. Elle contient les attributs suivants :
+
+- **`id`** : L'identifiant unique de la voiture.
+- **`model`** : Le nom du modèle de la voiture.
+- **`brand`** : La marque de la voiture.
+
+**Méthodes** :
+- **`getCarName()`** : Retourne la concaténation de la marque et du modèle de la voiture (par exemple, `"Volkswagen Golf III"`).
+
+---
+
+### 2. **CarDB.java (Singleton)**
+
+La classe `CarDB` est un singleton située dans le paquet `database`. Elle agit comme une base de données en mémoire pour le système de gestion de voitures, contenant une liste de voitures et offrant des méthodes pour interagir avec elles.
+
+**Méthodes** :
+- **`getInstance()`** : Assure qu'il n'y a qu'une seule instance de la classe `CarDB` (patron Singleton).
+- **`getCarById(String carId)`** : Récupère une voiture par son identifiant dans la base de données.
+
+---
+
+### 3. **CarManagerAPI.java (Facade Interface)**
+
+L'interface `CarManagerAPI`, située dans le paquet `api`, définit les opérations disponibles pour interagir avec le système de gestion des voitures. Elle offre une API simple et unifiée pour les consommateurs du système afin de récupérer des données de voitures, formater les noms des voitures et évaluer la meilleure voiture.
+
+**Méthodes** :
+- **`getCarById(String carId)`** : Récupère une voiture par son identifiant.
+- **`getAllCarNames()`** : Récupère et formate tous les noms des voitures.
+- **`getBestCar()`** : Récupère la meilleure voiture selon l'évaluation du modèle.
+
+---
+
+### 4. **CarManager.java (Implémentation de la Facade)**
+
+La classe `CarManager`, située dans le paquet `api/implementation`, est la façade qui implémente l'interface `CarManagerAPI`. Elle fournit une interface simplifiée pour interagir avec le système et délègue les opérations aux services appropriés (par exemple, `CarEvaluator`, `CarFormatter`) ainsi qu'à la base de données `CarDB`.
+
+**Méthodes** :
+- **`getCarById(String carId)`** : Utilise `CarDB` pour récupérer la voiture par son identifiant.
+- **`getAllCarNames()`** : Utilise `CarFormatter` pour formater et retourner tous les noms des voitures.
+- **`getBestCar()`** : Utilise `CarEvaluator` pour déterminer la meilleure voiture parmi la liste des voitures.
+
+---
+
+### 5. **CarEvaluator.java**
+
+La classe `CarEvaluator`, située dans le paquet `services`, est responsable de l'évaluation de la meilleure voiture en fonction du nom du modèle. Cette classe contient la logique pour comparer et déterminer la meilleure voiture.
+
+**Méthodes** :
+- **`getBestCar(List<Car> cars)`** : Itère à travers une liste de voitures et compare leurs modèles pour déterminer la "meilleure" voiture.
+
+---
+
+### 6. **CarFormatter.java**
+
+La classe `CarFormatter`, située dans le paquet `services`, est responsable du formatage des noms des voitures. Elle itère à travers une liste de voitures et retourne une chaîne formatée contenant le nom de chaque voiture (marque + modèle), séparé par des virgules.
+
+**Méthodes** :
+- **`getCarsNames(List<Car> cars)`** : Formate la liste des noms de voitures en une seule chaîne.
+
+---
+
+## Avantages du refactoring SRP avec les patrons de conception Facade et Singleton
+
+### 1. **Principe de Responsabilité Unique (SRP)**
+
+Chaque classe a une seule responsabilité clairement définie :
+
+- **`Car`** : Représente les données d'une voiture.
+- **`CarDB`** : Gère la base de données (patron Singleton).
+- **`CarManagerAPI`** : Définit l'API pour interagir avec le système de gestion des voitures.
+- **`CarManager`** : Agit comme la façade, fournissant une interface simplifiée et délégant les responsabilités aux autres classes.
+- **`CarEvaluator`** : Évalue la meilleure voiture.
+- **`CarFormatter`** : Formate les noms des voitures.
+
+### 2. **Patron Facade**
+
+La classe `CarManager`fournit une API unifiée aux clients du système. Les consommateurs de l'interface `CarManagerAPI` n'ont pas besoin de connaître les services sous-jacents comme `CarEvaluator`, `CarFormatter` ou la base de données.
+
+### 3. **Patron Singleton**
+
+La classe `CarDB` garantit qu'il n'existe qu'une seule instance de la base de données des voitures, offrant un accès centralisé aux données des voitures.
+
+---
+
+Cette solution améliore la maintenabilité, la flexibilité et la testabilité du système de gestion de voitures en séparant les préoccupations dans des classes clairement définies, chacune ayant une responsabilité unique.
