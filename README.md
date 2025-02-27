@@ -10,7 +10,7 @@ Le code initial viole le principe de l'Inversion des Dépendances (DIP) du SOLID
 🔴 Problème principal : Le code dépend des détails (implémentations concrètes) au lieu de dépendre d’abstractions.
 
 <br><br>
-![Avant DIP](SOLID\DIP\src\com\directi\training\dip\exercise\Diagramme_de_classe.png)
+![Avant DIP](SOLID/DIP/src/com/directi/training/dip/exercise/Diagramme_de_classe.png)
 
 ### ✅ Solution proposée
 #### Séparation des responsabilités avec des interfaces
@@ -31,7 +31,7 @@ Par exemple :
 * Les combinaisons sont infinies, et aucune modification de EncodingModule n’est requise pour en ajouter de nouvelles.  
 
 <br><br>
-![Après DIP](SOLID\DIP\src\com\directi\training\dip\ProposedSolution\Dip_Class_Diagram.png)
+![Après DIP](SOLID/DIP/src/com/directi/training/dip/ProposedSolution/Dip_Class_Diagram.png)
 
 ### 📌 Conclusion
 L’application du DIP dans cette solution garantit :  
@@ -51,7 +51,7 @@ Dans l’implémentation actuelle, les classes **SensingDoor** et **TimedDoor** 
 
 Cela entraîne une violation du principe de **Ségrégation des Interfaces** (ISP), qui stipule que "les clients ne doivent pas être contraints de dépendre d’interfaces qu’ils n’utilisent pas".
 <br><br>
-![Avant ISP](SOLID\ISP\src\com\directi\training\isp\exercise\avant_ISP.png)
+![Avant ISP](SOLID/ISP/src/com/directi/training/isp/exercise/avant_ISP.png)
 
 ---
 
@@ -70,7 +70,7 @@ Après l'application du principe de **Ségrégation des Interfaces** (ISP), le c
 - **TimedDoor** implémente uniquement l'interface **ITimedDoor** et ne dépend plus de la méthode `proximityCallback()`, qui ne lui était pas utile.
 
   <br><br>
-![Après ISP](SOLID\ISP\src\com\directi\training\isp\ProposedSolution\apres_ISP.png)
+![Après ISP](SOLID/ISP/src/com/directi/training/isp/ProposedSolution/apres_ISP.png)
 
 ---
 
@@ -86,28 +86,28 @@ La classe ElectronicDuck ne peut pas être utilisée de manière interchangeable
 
 <br><br>
 <br><br>
-![Avant LSP](SOLID\LSP\src\com\directi\training\lsp\exercise\UML_class.png)
+![Avant LSP](SOLID/LSP/src/com/directi/training/lsp/exercise/UML_class.png)
 
 => Pour implémenter le principe LSP, on a introduit une interface IDuck qui définit les méthodes quack() et swim(). 
 Les classes RealDuck et ElectronicDuck implémentent cette interface. La classe ElectronicDuck fournit maintenant un comportement par défaut lorsqu'elle est éteinte, garantissant qu'elle peut être utilisée de manière interchangeable avec RealDuck.
 
 <br><br>
-![Après LSP](SOLID\LSP\src\com\directi\training\lsp\proposed_solution\UML_class.png)
+![Après LSP](SOLID/LSP/src/com/directi/training/lsp/proposed_solution/UML_class.png)
 
 ## OCP: Open/Close Principle
 Dans le code initial de la classe ResourceAllocator, l'allocation et la libération des ressources étaient gérées à l'aide d'une instruction switch basée sur l'énumération ResourceType.
 Cette approche viole le principe de l'Ouverture/Fermeture car l'ajout d'un nouveau type de ressource nécessite de modifier toutes les méthodes de la classe ResourceAllocator, ainsi que l'ajout d'une autre enumeration dans ResourceType.
 
-![Avant OCP](SOLID\OCP\src\com\directi\training\ocp\exercise\UML_class.png)
+![Avant OCP](SOLID/OCP/src/com/directi/training/ocp/exercise/UML_class.png)
 
 => Pour implémenter le principe Open/Close, on a refactorisé le code en ajoutant une interface IResourceType qui définit les méthodes pour l'allocation et la libération des ressources. 
 Chaque type de ressource implémente cette interface. 
 La classe ResourceAllocator fonctionne maintenant avec l'interface IResourceType, ce qui la rend "Open" à l'extension mais "Closed" à la modification.
 
-![Après OCP](SOLID\OCP\src\com\directi\training\ocp\solution_exercice\UML_class.png)
+![Après OCP](SOLID/OCP/src/com/directi/training/ocp/solution_exercice/UML_class.png)
 
 ## SRP: 
 
-![Avant SRP](out\SOLID\SRP\src\com\directi\training\srp\exercise\InitialSolution\Initial_Solution.png)
+![Avant SRP](out/SOLID/SRP/src/com/directi/training/srp/exercise/InitialSolution/Initial_Solution.png)
 
-![Après SRP](out\SOLID\SRP\src\com\directi\training\srp\proposed_solution\Proposed_Solution\Proposed_Solution.png)
+![Après SRP](out/SOLID/SRP/src/com/directi/training/srp/proposed_solution/Proposed_Solution/Proposed_Solution.png)
