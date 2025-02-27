@@ -1,6 +1,6 @@
 package com.directi.training.srp.example;
 
-public class Employee
+public class 1Employee
 {
     private static final int LEAVES_ALLOWED = 27;
     private int _empId;
