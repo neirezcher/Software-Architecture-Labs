@@ -7,7 +7,7 @@ Dans l’implémentation actuelle, les classes **SensingDoor** et **TimedDoor** 
 
 Cela entraîne une violation du principe de **Ségrégation des Interfaces** (ISP), qui stipule que "les clients ne doivent pas être contraints de dépendre d’interfaces qu’ils n’utilisent pas".
 <br><br>
-![Avant ISP](exercise\avant_ISP.png)
+![Avant ISP](exercise/avant_ISP.png)
 
 ---
 
@@ -25,7 +25,7 @@ Après l'application du principe de **Ségrégation des Interfaces** (ISP), le c
 - **SensingDoor** implémente désormais uniquement l'interface **ISensingDoor** et ne dépend plus de la méthode `timeOutCallback()`, qui n'était pas pertinente pour cette classe.
 - **TimedDoor** implémente uniquement l'interface **ITimedDoor** et ne dépend plus de la méthode `proximityCallback()`, qui ne lui était pas utile.
   <br><br>
-  ![Apres ISP](ProposedSolution\apres_ISP.png)
+  ![Apres ISP](ProposedSolution/apres_ISP.png)
 
 ---
 
